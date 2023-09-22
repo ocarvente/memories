@@ -1,8 +1,8 @@
 import { DELETE, UPDATE, FETCH_ALL, CREATE } from "../constants/actionTypes";
 
-export default (posts = [], action) => {
+const rootReducer = (posts = [], action) => {
     switch(action.type) {
-        case DELETE: 
+        case DELETE:
             return posts.filter((post) => post._id !== action.payload);
         case UPDATE:
             return posts.map((post) => post._id === action.payload._id ? action.payload : post);
@@ -10,7 +10,8 @@ export default (posts = [], action) => {
             return action.payload;
         case CREATE:
             return [...posts, action.payload];
-        default: 
+        default:
             return posts;
     }
 }
+export default rootReducer;
